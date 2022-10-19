@@ -10,9 +10,9 @@ slash = SlashCommand(bot, sync_commands = True)
 @bot.event
 async def on_ready():
     print("Lords Mobile Bot is connect in the server !")
-    Dis = bot.get_guild(int(930527744306061333))
-    activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {Dis.member_count}')
-    await bot.change_presence(activity=activity)
+    # Dis = bot.get_guild(int(930527744306061333))
+    # activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {Dis.member_count}')
+    # await bot.change_presence(activity=activity)
 
 @slash.slash(name = "batiment_payant", description = "Permet d'obtenir des information a propos de vos batiment payant", guild_ids=[930527744306061333, 974566955132526673], options=[
     create_option(
@@ -28,39 +28,39 @@ async def on_ready():
         choices=[
             create_choice(
                 name="0",
-                value=0
+                value="0"
             ),
             create_choice(
                 name="1",
-                value=1
+                value="1"
             ),
             create_choice(
                 name="2",
-                value=2
+                value="2"
             ),
             create_choice(
                 name="3",
-                value=3
+                value="3"
             ),
             create_choice(
                 name="4",
-                value=4
+                value="4"
             ),
             create_choice(
                 name="5",
-                value=5
+                value="5"
             ),
             create_choice(
                 name="6",
-                value=6
+                value="6"
             ),
             create_choice(
                 name="7",
-                value=7
+                value="7"
             ),
             create_choice(
                 name="8",
-                value=8
+                value="8"
             ),
             create_choice(
                 name="9",
@@ -382,8 +382,14 @@ async def on_ready():
         required = True)
     ])
 
-async def mp(ctx, membre: discord.Member, message):
-        await membre.send(message)
+async def mp(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal, pioche, depot, rendement):
+    lv = [0, 1, 2, 5, 12, 20, 30, 45, 60, 85, 100, 120, 150, 180, 250, 340, 500, 700, 900, 1200, 1500, 1800, 2100, 2400, 3000, 4500]
+    nb_grimoire_manquant=0
+    for i in range(26):
+        if i == hall or i > hall:
+            nb_grimoire_manquant+=lv[i]
+    print(nb_grimoire_manquant)
+
 
 
 
