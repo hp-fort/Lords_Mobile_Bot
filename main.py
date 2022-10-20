@@ -16,373 +16,58 @@ async def on_ready():
 
 @slash.slash(name = "batiment_payant", description = "Permet d'obtenir des information a propos de vos batiment payant", guild_ids=[930527744306061333, 974566955132526673], options=[
     create_option(
-        name = "nombre de gemmes",
+        name = "gemmes",
         description = "combien de gemmes avez vous ?",
         option_type = 4, 
         required = True),
     create_option(
-        name = "niveau du hall",
+        name = "hall",
         description = "quel est le niveau de votre hall ?",
         option_type = 4, 
-        required = True,
-        choices=[
-            create_choice(
-                name="0",
-                value="0"
-            ),
-            create_choice(
-                name="1",
-                value="1"
-            ),
-            create_choice(
-                name="2",
-                value="2"
-            ),
-            create_choice(
-                name="3",
-                value="3"
-            ),
-            create_choice(
-                name="4",
-                value="4"
-            ),
-            create_choice(
-                name="5",
-                value="5"
-            ),
-            create_choice(
-                name="6",
-                value="6"
-            ),
-            create_choice(
-                name="7",
-                value="7"
-            ),
-            create_choice(
-                name="8",
-                value="8"
-            ),
-            create_choice(
-                name="9",
-                value=9
-            ),
-            create_choice(
-                name="10",
-                value=10
-            ),
-            create_choice(
-                name="11",
-                value=11
-            ),
-            create_choice(
-                name="12",
-                value=12
-            ),
-            create_choice(
-                name="13",
-                value=13
-            ),
-            create_choice(
-                name="14",
-                value=14
-            ),
-            create_choice(
-                name="15",
-                value=15
-            ),
-            create_choice(
-                name="16",
-                value=16
-            ),
-            create_choice(
-                name="17",
-                value=17
-            ),
-            create_choice(
-                name="18",
-                value=18
-            ),
-            create_choice(
-                name="19",
-                value=19
-            ),
-            create_choice(
-                name="20",
-                value=20
-            ),
-            create_choice(
-                name="21",
-                value=21
-            ),
-            create_choice(
-                name="22",
-                value=22
-            ),
-            create_choice(
-                name="23",
-                value=23
-            ),
-            create_choice(
-                name="24",
-                value=24
-            ),
-            create_choice(
-                name="25",
-                value=25
-            )]),
+        required = True),
     create_option(
-        name = "niveau de la prison",
+        name = "prison",
         description = "quel est le niveau de votre prison ?",
         option_type = 4, 
-        required = True,
-        choices=[
-            create_choice(
-                name="0",
-                value=0
-            ),
-            create_choice(
-                name="1",
-                value=1
-            ),
-            create_choice(
-                name="2",
-                value=2
-            ),
-            create_choice(
-                name="3",
-                value=3
-            ),
-            create_choice(
-                name="4",
-                value=4
-            ),
-            create_choice(
-                name="5",
-                value=5
-            ),
-            create_choice(
-                name="6",
-                value=6
-            ),
-            create_choice(
-                name="7",
-                value=7
-            ),
-            create_choice(
-                name="8",
-                value=8
-            ),
-            create_choice(
-                name="9",
-                value=9
-            ),
-            create_choice(
-                name="10",
-                value=10
-            ),
-            create_choice(
-                name="11",
-                value=11
-            ),
-            create_choice(
-                name="12",
-                value=12
-            ),
-            create_choice(
-                name="13",
-                value=13
-            ),
-            create_choice(
-                name="14",
-                value=14
-            ),
-            create_choice(
-                name="15",
-                value=15
-            ),
-            create_choice(
-                name="16",
-                value=16
-            ),
-            create_choice(
-                name="17",
-                value=17
-            ),
-            create_choice(
-                name="18",
-                value=18
-            ),
-            create_choice(
-                name="19",
-                value=19
-            ),
-            create_choice(
-                name="20",
-                value=20
-            ),
-            create_choice(
-                name="21",
-                value=21
-            ),
-            create_choice(
-                name="22",
-                value=22
-            ),
-            create_choice(
-                name="23",
-                value=23
-            ),
-            create_choice(
-                name="24",
-                value=24
-            ),
-            create_choice(
-                name="25",
-                value=25
-            )]),
+        required = True),
     create_option(
-        name = "niveau de l'autel",
+        name = "autel",
         description = "quel est le niveau de votre autel ?",
         option_type = 4, 
-        required = True,
-        choices=[
-            create_choice(
-                name="0",
-                value=0
-            ),
-            create_choice(
-                name="1",
-                value=1
-            ),
-            create_choice(
-                name="2",
-                value=2
-            ),
-            create_choice(
-                name="3",
-                value=3
-            ),
-            create_choice(
-                name="4",
-                value=4
-            ),
-            create_choice(
-                name="5",
-                value=5
-            ),
-            create_choice(
-                name="6",
-                value=6
-            ),
-            create_choice(
-                name="7",
-                value=7
-            ),
-            create_choice(
-                name="8",
-                value=8
-            ),
-            create_choice(
-                name="9",
-                value=9
-            ),
-            create_choice(
-                name="10",
-                value=10
-            ),
-            create_choice(
-                name="11",
-                value=11
-            ),
-            create_choice(
-                name="12",
-                value=12
-            ),
-            create_choice(
-                name="13",
-                value=13
-            ),
-            create_choice(
-                name="14",
-                value=14
-            ),
-            create_choice(
-                name="15",
-                value=15
-            ),
-            create_choice(
-                name="16",
-                value=16
-            ),
-            create_choice(
-                name="17",
-                value=17
-            ),
-            create_choice(
-                name="18",
-                value=18
-            ),
-            create_choice(
-                name="19",
-                value=19
-            ),
-            create_choice(
-                name="20",
-                value=20
-            ),
-            create_choice(
-                name="21",
-                value=21
-            ),
-            create_choice(
-                name="22",
-                value=22
-            ),
-            create_choice(
-                name="23",
-                value=23
-            ),
-            create_choice(
-                name="24",
-                value=24
-            ),
-            create_choice(
-                name="25",
-                value=25
-            )]),
+        required = True),
     create_option(
-        name = "nombre de grimoire de guerre",
+        name = "grimoire",
         description = "combien de grimoire de guerre avez vous ?",
         option_type = 4, 
         required = True),
     create_option(
-        name = "nombre de Menotes en acier",
+        name = "menotes",
         description = "combien de Menotes en acier avez vous ?",
         option_type = 4, 
         required = True),
     create_option(
-        name = "nombre de Cristal d'ame",
+        name = "cristal",
         description = "combien de Cristal d'ame avez vous ?",
         option_type = 4, 
         required = True),
     create_option(
-        name = "nombre de Pioche",
+        name = "pioche",
         description = "combien de Pioche pour la salle au tresor avez vous ?",
         option_type = 4, 
         required = True),
     create_option(
-        name = "Depot max",
+        name = "depot",
         description = "combien de gemmes pouvez vous mettre d'un seul coup a la salle au tresor ?",
         option_type = 4, 
         required = True),
     create_option(
-        name = "Rendement max (en %)",
+        name = "Rendement",
         description = "quel est le pourcentage de rendement ?",
         option_type = 4, 
         required = True)
     ])
 
-async def mp(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal, pioche, depot, rendement):
+async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal, pioche, depot, rendement):
     lv = [0, 1, 2, 5, 12, 20, 30, 45, 60, 85, 100, 120, 150, 180, 250, 340, 500, 700, 900, 1200, 1500, 1800, 2100, 2400, 3000, 4500]
     nb_grimoire_manquant=0
     for i in range(26):
