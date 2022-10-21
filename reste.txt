@@ -1,0 +1,21 @@
+entree :
+
+gemmes
+
+hall
+prison
+autel 
+
+grimoire
+menots
+cristal
+
+pioche
+depot
+rendement
+
+Sortie
+
+nb de grimoire restant v
+nb de menotes restant v
+nb de crital restant v 
