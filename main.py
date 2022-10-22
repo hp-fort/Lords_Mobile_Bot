@@ -1,4 +1,4 @@
-from discord.ext import commands, tasks
+from discord.ext import commands
 from discord_slash import *
 from discord_slash.utils.manage_commands import *
 from discord_slash.utils.manage_components import *
@@ -80,42 +80,57 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
     for i in range(26):
         if i == hall or i > hall:
             nb_grimoire_manquant+=lv[i]
-            nb_gemmes_grimoire_manquant_base=nb_grimoire_manquant
+            nb_gemmes_grimoire_manquant_base=nb_grimoire_manquant-grimoire
     for i in range(26):
         if i == prison or i > prison:
             nb_menote_manquant+=lv[i]
-            nb_gemmes_menote_manquant_base=nb_menote_manquant
+            nb_gemmes_menote_manquant_base=nb_menote_manquant-menote
     for i in range(26):
         if i == autel or i > autel:
             nb_cristal_manquant+=lv[i]
-            nb_gemmes_cristal_manquant_base=nb_cristal_manquant
+            nb_gemmes_cristal_manquant_base=nb_cristal_manquant-cristal
+
     while nb_gemmes_grimoire_manquant_base!=0:
         if (nb_gemmes_grimoire_manquant_base-1000)>=0:
             nb_gemmes_grimoire_manquant +=10000
+            nb_gemmes_grimoire_manquant_base-=1000
         elif (nb_gemmes_grimoire_manquant_base-100)>=0:
             nb_gemmes_grimoire_manquant +=1100
+            nb_gemmes_grimoire_manquant_base-=100
         elif (nb_gemmes_grimoire_manquant_base-10)>=0:
             nb_gemmes_grimoire_manquant +=120
+            nb_gemmes_grimoire_manquant_base-=10
         elif (nb_gemmes_grimoire_manquant_base-1)>=0:
             nb_gemmes_grimoire_manquant +=15
+            nb_gemmes_grimoire_manquant_base-=1
+
     while nb_gemmes_menote_manquant_base!=0:
         if (nb_gemmes_menote_manquant_base-1000)>=0:
             nb_gemmes_menote_manquant +=10000
+            nb_gemmes_menote_manquant_base-=1000
         elif (nb_gemmes_menote_manquant_base-100)>=0:
             nb_gemmes_menote_manquant +=1100
+            nb_gemmes_menote_manquant_base-=100
         elif (nb_gemmes_menote_manquant_base-10)>=0:
             nb_gemmes_menote_manquant +=120
+            nb_gemmes_menote_manquant_base-=10
         elif (nb_gemmes_menote_manquant_base-1)>=0:
             nb_gemmes_menote_manquant +=15
+            nb_gemmes_menote_manquant_base-=1
+
     while nb_gemmes_cristal_manquant_base!=0:
         if (nb_gemmes_cristal_manquant_base-1000)>=0:
             nb_gemmes_cristal_manquant +=10000
+            nb_gemmes_cristal_manquant_base-=1000
         elif (nb_gemmes_cristal_manquant_base-100)>=0:
             nb_gemmes_cristal_manquant +=1100
+            nb_gemmes_cristal_manquant_base-=100
         elif (nb_gemmes_cristal_manquant_base-10)>=0:
             nb_gemmes_cristal_manquant +=120
+            nb_gemmes_cristal_manquant_base-=10
         elif (nb_gemmes_cristal_manquant_base-1)>=0:
             nb_gemmes_cristal_manquant +=15
+            nb_gemmes_cristal_manquant_base-=1
 
 
 
@@ -127,21 +142,26 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
 
 
 
+    await ctx.send("test reussi")
+
+
+    
+    print(f"""nb de grimoire restant : {nb_grimoire_manquant}
+nb de menotes restant : {nb_menote_manquant}
+nb de cristal restant : {nb_cristal_manquant}
+cout de grimoire restant : {nb_gemmes_grimoire_manquant} gemmes
+cout de menotes restant : {nb_gemmes_menote_manquant} gemmes
+cout de cristal restant : {nb_gemmes_cristal_manquant} gemmes
+le total fait : {nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant}.
 
 
 
-
-    await ctx.send(f"""nb de grimoire restant : {nb_grimoire_manquant}
-    nb de menotes restant : {nb_menote_manquant}
-    nb de cristal restant : {nb_cristal_manquant}
-    cout de grimoire restant : {nb_gemmes_grimoire_manquant}
-    cout de menotes restant : {nb_gemmes_menote_manquant}
-    cout de cristal restant : {nb_gemmes_cristal_manquant}""")
+""")
     
 
 
 
 with open("config", "r", encoding="utf-8") as f:
     bot_id = f.read()
-    
+
 bot.run(bot_id)
