@@ -2,6 +2,7 @@ from discord.ext import commands, tasks
 from discord_slash import *
 from discord_slash.utils.manage_commands import *
 from discord_slash.utils.manage_components import *
+import os
 
 bot = commands.Bot(command_prefix="!",
                    description="Bot lords mobile")
@@ -140,5 +141,7 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
 
 
 
-
-bot.run("OTMyNTcyODE3MzkwNzE0OTIx.Gtz0Gn.NYT_g1Miy5xyTMKnR2cUghEIVp0m4OvVlPHKl0")
+with open("config", "r", encoding="utf-8") as f:
+    bot_id = f.read()
+    
+bot.run(bot_id)
