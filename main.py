@@ -2,7 +2,6 @@ from discord.ext import commands
 from discord_slash import *
 from discord_slash.utils.manage_commands import *
 from discord_slash.utils.manage_components import *
-import os
 
 bot = commands.Bot(command_prefix="!",
                    description="Bot lords mobile")
@@ -153,10 +152,7 @@ cout de grimoire restant : {nb_gemmes_grimoire_manquant} gemmes
 cout de menotes restant : {nb_gemmes_menote_manquant} gemmes
 cout de cristal restant : {nb_gemmes_cristal_manquant} gemmes
 le total fait : {nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant}.
-
-
-
-""")
+Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes}""")
     
 
 
