@@ -19,3 +19,7 @@ Sortie
 nb de grimoire restant v
 nb de menotes restant v
 nb de crital restant v 
+
+trad en gemmes
+
+avec depot 30j, de ... gemmes, tu pourra le faire en ... mois

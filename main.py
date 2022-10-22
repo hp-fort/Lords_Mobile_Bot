@@ -71,17 +71,50 @@ async def on_ready():
 async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal, pioche, depot, rendement):
     lv = [1, 2, 5, 12, 20, 30, 45, 60, 85, 100, 120, 150, 180, 250, 340, 500, 700, 900, 1200, 1500, 1800, 2100, 2400, 3000, 4500, 0]
     nb_grimoire_manquant=0
-    nb_prison_manquant=0
-    nb_autel_manquant=0
+    nb_menote_manquant=0
+    nb_cristal_manquant=0
+    nb_gemmes_grimoire_manquant=0
+    nb_gemmes_menote_manquant=0
+    nb_gemmes_cristal_manquant=0
     for i in range(26):
         if i == hall or i > hall:
             nb_grimoire_manquant+=lv[i]
+            nb_gemmes_grimoire_manquant_base=nb_grimoire_manquant
     for i in range(26):
         if i == prison or i > prison:
-            nb_prison_manquant+=lv[i]
+            nb_menote_manquant+=lv[i]
+            nb_gemmes_menote_manquant_base=nb_menote_manquant
     for i in range(26):
         if i == autel or i > autel:
-            nb_autel_manquant+=lv[i]
+            nb_cristal_manquant+=lv[i]
+            nb_gemmes_cristal_manquant_base=nb_cristal_manquant
+    while nb_gemmes_grimoire_manquant_base!=0:
+        if (nb_gemmes_grimoire_manquant_base-1000)>=0:
+            nb_gemmes_grimoire_manquant +=10000
+        elif (nb_gemmes_grimoire_manquant_base-100)>=0:
+            nb_gemmes_grimoire_manquant +=1100
+        elif (nb_gemmes_grimoire_manquant_base-10)>=0:
+            nb_gemmes_grimoire_manquant +=120
+        elif (nb_gemmes_grimoire_manquant_base-1)>=0:
+            nb_gemmes_grimoire_manquant +=15
+    while nb_gemmes_menote_manquant_base!=0:
+        if (nb_gemmes_menote_manquant_base-1000)>=0:
+            nb_gemmes_menote_manquant +=10000
+        elif (nb_gemmes_menote_manquant_base-100)>=0:
+            nb_gemmes_menote_manquant +=1100
+        elif (nb_gemmes_menote_manquant_base-10)>=0:
+            nb_gemmes_menote_manquant +=120
+        elif (nb_gemmes_menote_manquant_base-1)>=0:
+            nb_gemmes_menote_manquant +=15
+    while nb_gemmes_cristal_manquant_base!=0:
+        if (nb_gemmes_cristal_manquant_base-1000)>=0:
+            nb_gemmes_cristal_manquant +=10000
+        elif (nb_gemmes_cristal_manquant_base-100)>=0:
+            nb_gemmes_cristal_manquant +=1100
+        elif (nb_gemmes_cristal_manquant_base-10)>=0:
+            nb_gemmes_cristal_manquant +=120
+        elif (nb_gemmes_cristal_manquant_base-1)>=0:
+            nb_gemmes_cristal_manquant +=15
 
 
 
@@ -97,11 +130,12 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
 
 
 
-
-
-    await ctx.send(nb_grimoire_manquant)
-    await ctx.send(nb_prison_manquant)
-    await ctx.send(nb_autel_manquant)
+    await ctx.send(f"""nb de grimoire restant : {nb_grimoire_manquant}
+    nb de menotes restant : {nb_menote_manquant}
+    nb de cristal restant : {nb_cristal_manquant}
+    cout de grimoire restant : {nb_gemmes_grimoire_manquant}
+    cout de menotes restant : {nb_gemmes_menote_manquant}
+    cout de cristal restant : {nb_gemmes_cristal_manquant}""")
     
 
 
