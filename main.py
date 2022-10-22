@@ -2,6 +2,7 @@ from discord.ext import commands
 from discord_slash import *
 from discord_slash.utils.manage_commands import *
 from discord_slash.utils.manage_components import *
+import time
 
 bot = commands.Bot(command_prefix="!",
                    description="Bot lords mobile")
@@ -10,11 +11,12 @@ slash = SlashCommand(bot, sync_commands = True)
 @bot.event
 async def on_ready():
     print("Lords Mobile Bot is connect in the server !")
-    # Dis = bot.get_guild(int(930527744306061333))
-    # activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {Dis.member_count}')
-    # await bot.change_presence(activity=activity)
+    Dis = bot.get_guild(int(974566955132526673))
+    activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {Dis.member_count}')
+    await bot.change_presence(activity=activity)
 
-@slash.slash(name = "batiment_payant", description = "Permet d'obtenir des information a propos de vos batiment payant", guild_ids=[930527744306061333], options=[
+
+@slash.slash(name="batiment_payant", description="Permet d'obtenir des information a propos de vos batiment payant", guild_ids=[930527744306061333, 974566955132526673], options=[
 # 974566955132526673 -> id FA serv
     create_option(
         name = "gemmes",
@@ -131,31 +133,30 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
             nb_gemmes_cristal_manquant +=15
             nb_gemmes_cristal_manquant_base-=1
 
-
-
-
-
-
-
-
-
-
-
-    await ctx.send("test reussi")
-
-
-    
-    print(f"""nb de grimoire restant : {nb_grimoire_manquant}
-nb de menotes restant : {nb_menote_manquant}
-nb de cristal restant : {nb_cristal_manquant}
+    message = await ctx.send(f"""nb de grimoire restant : {nb_grimoire_manquant - grimoire}
+nb de menotes restant : {nb_menote_manquant - menote}
+nb de cristal restant : {nb_cristal_manquant - cristal}
 cout de grimoire restant : {nb_gemmes_grimoire_manquant} gemmes
 cout de menotes restant : {nb_gemmes_menote_manquant} gemmes
 cout de cristal restant : {nb_gemmes_cristal_manquant} gemmes
 le total fait : {nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant}.
-Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes}""")
+Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes}
+
+(ceci est un message provisoire)""")
+    time.sleep(20)
+    await message.delete()
     
 
 
+
+
+
+
+@bot.command()
+async def clear(ctx, nombre : int):
+	messages = await ctx.channel.history(limit = nombre + 1).flatten()
+	for message in messages:
+		await message.delete()
 
 with open("config", "r", encoding="utf-8") as f:
     bot_id = f.read()
