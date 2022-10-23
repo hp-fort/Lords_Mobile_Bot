@@ -143,20 +143,13 @@ le total fait : {nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_g
 Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes}
 
 (ceci est un message provisoire)""")
-    time.sleep(20)
+    time.sleep(120)
     await message.delete()
     
 
 
 
 
-
-
-@bot.command()
-async def clear(ctx, nombre : int):
-	messages = await ctx.channel.history(limit = nombre + 1).flatten()
-	for message in messages:
-		await message.delete()
 
 with open("config", "r", encoding="utf-8") as f:
     bot_id = f.read()
