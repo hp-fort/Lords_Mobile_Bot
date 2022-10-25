@@ -1,3 +1,4 @@
+from turtle import color, title
 from discord.ext import commands
 from discord_slash import *
 from discord_slash.utils.manage_commands import *
@@ -146,7 +147,17 @@ Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb
     time.sleep(120)
     await message.delete()
     
-
+    BotEmbed = discord.embeds(title="Batiment Payant", description="", color="#9c19fb")
+    BotEmbed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
+    BotEmbed.set_thumbnail(url="https://cdn.discordapp.com/attachments/486506139249278977/1034585972555403293/unknown.png")
+    BotEmbed.add_field(name="grimoire manquant", value=f"{nb_grimoire_manquant - grimoire} grimoire", inline=True)
+    BotEmbed.add_field(name="menote manquante", value=f"{nb_menote_manquant - menote} menote", inline=True)
+    BotEmbed.add_field(name="cristal manquant", value=f"{nb_cristal_manquant - cristal} cristal", inline=True)
+    BotEmbed.add_field(name="gemmes des grimoires manquants", value=f"{nb_gemmes_grimoire_manquant} gemmes", inline=True)
+    BotEmbed.add_field(name="gemmes des menotes manquantes", value=f"{nb_gemmes_menote_manquant} gemmes", inline=True)
+    BotEmbed.add_field(name="gemmes des cristal manquant", value=f"{nb_gemmes_cristal_manquant} gemmes", inline=True)
+    BotEmbed.add_field(name="grimoire manquant", value=f"{nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant} gemmes", inline=True)
+    BotEmbed.add_field(name="grimoire manquant", value=f"{(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes} gemmes", inline=True)
 
 
 
