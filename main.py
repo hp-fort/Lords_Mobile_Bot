@@ -133,23 +133,10 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
         elif (nb_gemmes_cristal_manquant_base-1)>=0:
             nb_gemmes_cristal_manquant +=15
             nb_gemmes_cristal_manquant_base-=1
-
-    message = await ctx.send(f"""nb de grimoire restant : {nb_grimoire_manquant - grimoire}
-nb de menotes restant : {nb_menote_manquant - menote}
-nb de cristal restant : {nb_cristal_manquant - cristal}
-cout de grimoire restant : {nb_gemmes_grimoire_manquant} gemmes
-cout de menotes restant : {nb_gemmes_menote_manquant} gemmes
-cout de cristal restant : {nb_gemmes_cristal_manquant} gemmes
-le total fait : {nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant}.
-Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes}
-
-(ceci est un message provisoire)""")
-    time.sleep(120)
-    await message.delete()
     
-    BotEmbed = discord.embeds(title="Batiment Payant", description="", color="#9c19fb")
+    BotEmbed = discord.Embed(title="batiment payant", description = "", color=0x9c19fb)
     BotEmbed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar_url)
-    BotEmbed.set_thumbnail(url="https://cdn.discordapp.com/attachments/486506139249278977/1034585972555403293/unknown.png")
+    BotEmbed.set_thumbnail(url="https://cdn.discordapp.com/attachments/1025391983503614073/1034598369491943595/unknown.png")
     BotEmbed.add_field(name="grimoire manquant", value=f"{nb_grimoire_manquant - grimoire} grimoire", inline=True)
     BotEmbed.add_field(name="menote manquante", value=f"{nb_menote_manquant - menote} menote", inline=True)
     BotEmbed.add_field(name="cristal manquant", value=f"{nb_cristal_manquant - cristal} cristal", inline=True)
@@ -159,7 +146,9 @@ Avec les gemmes que vous avez , le total fait {(nb_gemmes_grimoire_manquant + nb
     BotEmbed.add_field(name="grimoire manquant", value=f"{nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant} gemmes", inline=True)
     BotEmbed.add_field(name="grimoire manquant", value=f"{(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes} gemmes", inline=True)
 
-
+    message = await ctx.send(embed=BotEmbed)
+    time.sleep(120)
+    await message.delete()
 
 
 with open("config", "r", encoding="utf-8") as f:
