@@ -143,8 +143,8 @@ async def bat_payant(ctx, gemmes, hall, prison, autel, grimoire, menote, cristal
     BotEmbed.add_field(name="gemmes des grimoires manquants", value=f"{nb_gemmes_grimoire_manquant} gemmes", inline=True)
     BotEmbed.add_field(name="gemmes des menotes manquantes", value=f"{nb_gemmes_menote_manquant} gemmes", inline=True)
     BotEmbed.add_field(name="gemmes des cristal manquant", value=f"{nb_gemmes_cristal_manquant} gemmes", inline=True)
-    BotEmbed.add_field(name="grimoire manquant", value=f"{nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant} gemmes", inline=True)
-    BotEmbed.add_field(name="grimoire manquant", value=f"{(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes} gemmes", inline=True)
+    BotEmbed.add_field(name="total", value=f"{nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant} gemmes", inline=True)
+    BotEmbed.add_field(name="total - vos gemmes", value=f"{(nb_gemmes_grimoire_manquant + nb_gemmes_cristal_manquant + nb_gemmes_menote_manquant) - gemmes} gemmes", inline=True)
 
     message = await ctx.send(embed=BotEmbed)
     time.sleep(120)
