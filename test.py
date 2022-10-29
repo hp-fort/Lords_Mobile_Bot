@@ -1,51 +1,39 @@
-min1 = int(input("accel 1 min : ") * 1)
-min3 = int(input("accel 3 min : ") * 3)
-print(min3)
-min5 = int(input("accel 5 min : ") * 5)
-print(min)
-min10 = int(input("accel 10 min : ") * 10)
-print(min1)
-min15 = int(input("accel 15 min : ") * 15)
-print(min1)
-min30 = int(input("accel 30 min : ") * 30)
-print(min1)
-min60 = int(input("accel 60 min : ") * 60)
-print(min1)
-min180 = int(input("accel 3h : ") * 180)
-print(min1)
-min480 = int(input("accel 8h : ") * 480)
-print(min1)
-min900 = int(input("accel 15h : ") * 900)
-print(min1)
-min1440 = int(input("accel 24h : ") * 1440)
-print(min1)
-min4320 = int(input("accel 3j : ") * 4320)
-print(min1)
-min10080 = int(input("accel 7j : ") * 10080)
-print(min1)
-min43200 = int(input("accel 30j : ") * 43200)
+prod = int(input("production : "))
+taxe = float(input("taxe : "))
 
+prod *= 24
+taxe = taxe / 4 * 3
+taxe = 100-taxe
+taxe /= 100
+taxe = round(taxe, 3)
 
-min = min1+min3+min5+min10+min15+min30+min60+min180+min480+min900+min1440+min4320+min10080+min43200
+total = prod * taxe
+total /= 3
 
-print(min)
-def truncate_day(day, n):
-    integer_day = int(day * (10**n))/(10**n)
-    return int(integer_day)
+print(total)
 
-day = truncate_day(min/1440, 0)
+surtaxe = 0
+chariot = 0
+reste = 0
 
-def truncate_hour(day, n):
-    integer_hour = int(day * (10**n))/(10**n)
-    return int(integer_hour)
+if total >= 3000000 and total <=5999999:
+    chariot = 1
+    reste  = total - 3000000
+    surtaxe = reste / 100 * taxe
+elif total >= 6000000 and total <=8999999:
+    chariot = 2
+    reste  = total - 6000000
+    surtaxe = reste / 100 * taxe
+elif total >= 9000000 and total <=11999999:
+    chariot = 3
+    reste  = total - 9000000
+    surtaxe = reste / 100 * taxe
+elif total >= 12000000 and total <=14999999:
+    chariot = 4
+    reste  = total - 12000000
+    surtaxe = reste / 100 * taxe
+    reste += surtaxe
+    reste = round(reste, 0)
 
-min = min - day*1440
-
-hour = truncate_hour(min/60, 0)
-
-min = min - hour*60
-
-print(day)
-print(hour)
-print(min)
-
+print(f"""Vous devez envoyer {chariot} chariots entier,
+Vous devez envoyer {reste} dans un autre chariot """)
