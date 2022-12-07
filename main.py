@@ -2,8 +2,6 @@ import discord
 from discord.ext import commands
 import asyncio as ay
 
-
-
 class MyBot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=discord.Intents().all())
@@ -177,7 +175,7 @@ async def self(interaction: discord.Interaction):
     await ay.sleep(120)
     await interaction.channel.purge(limit=1)
 
-# with open("config", "r", encoding="utf-8") as f:
-    # bot_id = f.read()
+with open("config", "r", encoding="utf-8") as f:
+    bot_id = f.read()
 
-Bot.run("OTMyNTcyODE3MzkwNzE0OTIx.G-cyrV.Upe7QOVcMA6NFhtZT0QWQAEKoYYv0HBy-4lI3A")
+Bot.run(bot_id)
