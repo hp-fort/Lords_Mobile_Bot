@@ -1,6 +1,7 @@
 import asyncio as ay
 import discord
 from discord.ext import commands
+from discord.app_commands import Choice
 
 
 class MyBot(commands.Bot):
@@ -12,8 +13,8 @@ class MyBot(commands.Bot):
 
     async def on_ready(self):
         print("Lords Mobile Bot is connect in the server !")
-        Dis = Bot.get_guild(int(930527744306061333))
-        activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {Dis.member_count}')
+        Dis = Bot.get_guild(int(974566955132526673))
+        activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {(Dis.member_count)-9}')
         await Bot.change_presence(activity=activity)
 
     
@@ -177,11 +178,23 @@ async def self(interaction: discord.Interaction):
     await interaction.channel.purge(limit=1)
 
 
-    # Admin
+# Admin
 
-    
+
+@Bot.tree.command(name="guild_fest")
+@discord.app_commands.choices(success=[
+    Choice(name="yes", value= 1), 
+    Choice(name="no", value=0),
+    ])
+
+async def self(interaction: discord.Interaction, membre:discord.Member, success:int):
+
+    id_member = membre.id
+
+    await interaction.response.send_message(f"id : {id_member}, value = {success}", ephemeral=True)
+
 
 with open("config", "r", encoding="utf-8") as f:
-     bot_id = f.read()
+    bot_id = f.read()
 
 Bot.run(bot_id)
