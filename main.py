@@ -1,7 +1,6 @@
+import asyncio as ay
 import discord
 from discord.ext import commands
-import asyncio as ay
-
 
 
 class MyBot(commands.Bot):
@@ -177,7 +176,13 @@ async def self(interaction: discord.Interaction):
     await ay.sleep(120)
     await interaction.channel.purge(limit=1)
 
-# with open("config", "r", encoding="utf-8") as f:
-    # bot_id = f.read()
 
-Bot.run("OTMyNTcyODE3MzkwNzE0OTIx.G-cyrV.Upe7QOVcMA6NFhtZT0QWQAEKoYYv0HBy-4lI3A")
+
+
+
+    # Administration
+
+with open("config", "r", encoding="utf-8") as f:
+    bot_id = f.read()
+
+Bot.run(bot_id)
