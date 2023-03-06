@@ -176,6 +176,11 @@ async def self(interaction: discord.Interaction):
     await ay.sleep(120)
     await interaction.channel.purge(limit=1)
 
+
+    # Admin
+
+    
+
 with open("config", "r", encoding="utf-8") as f:
      bot_id = f.read()
 
