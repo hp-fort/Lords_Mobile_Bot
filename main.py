@@ -2,6 +2,7 @@ import asyncio as ay
 import discord
 from discord.ext import commands
 from discord.app_commands import Choice
+from database_handler import DatabaseHandler
 
 
 class MyBot(commands.Bot):
@@ -16,6 +17,7 @@ class MyBot(commands.Bot):
         Dis = Bot.get_guild(int(974566955132526673))
         activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {(Dis.member_count)-9}')
         await Bot.change_presence(activity=activity)
+database_handler = DatabaseHandler("Lords_Mobile_bot.db")
 
     
 Bot = MyBot()
@@ -183,15 +185,40 @@ async def self(interaction: discord.Interaction):
 
 @Bot.tree.command(name="guild_fest")
 @discord.app_commands.choices(success=[
-    Choice(name="yes", value= 1), 
+    Choice(name="yes", value=1), 
     Choice(name="no", value=0),
     ])
 
 async def self(interaction: discord.Interaction, membre:discord.Member, success:int):
-
+    player_find = False
     id_member = membre.id
+    rep = database_handler.search_member()
+    message = "erreur dans le code"
+    for id in rep:
+        if id["member_id"] == id_member:
+            old_gf = database_handler.take_old_result(id_member)
+            for list in old_gf:
+                last_gf = list["guild_fest_success"]
+                database_handler.update_new_gf(id_member, success)
+                if last_gf == 0 and success == 0:
+                    message = "The member already exists, during the last gf, he failed to finish his points. He didn't make it either."
+                elif last_gf == 0 and success == 1:
+                    message = "The member already exists, during the last gf, he failed to finish his points. He succeeded this time."
+                elif last_gf == 1 and success == 0:
+                    message = "The member already exists, during the last gf, he managed to finish his points. He didn't make it this time."
+                elif last_gf == 1 and success == 1:
+                    message = "The member already exists, during the last gf, he managed to finish his points. He succeeded this time. He's a good player."
+                player_find = True
 
-    await interaction.response.send_message(f"id : {id_member}, value = {success}", ephemeral=True)
+    if player_find == False:
+        database_handler.add_member(id_member, success)
+        if success == 0:
+            message = "The member has been added to the list, he did not pass his guild fest"
+        else:
+            message = "The member has been added to the list, he has successfully completed his guild fest"
+    
+    
+    await interaction.response.send_message(message, ephemeral=True)
 
 
 with open("config", "r", encoding="utf-8") as f:
