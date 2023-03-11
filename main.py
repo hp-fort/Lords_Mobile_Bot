@@ -23,7 +23,7 @@ database_handler = DatabaseHandler("Lords_Mobile_bot.db")
 Bot = MyBot()
 
 @Bot.tree.command(name="batiment_payant", description="Permet d'obtenir des information a propos de vos batiments payants")
-async def self(interaction: discord.Interaction, gemmes:int, hall:int, prison:int, autel:int, grimoire:int, menote:int, cristal:int):
+async def self(interaction: discord.Interaction, gemmes:int, hall:int, prison:int, autel:int, grimoire:int, menotes:int, cristal:int):
     lv = [1, 2, 5, 12, 20, 30, 45, 60, 85, 100, 120, 150, 180, 250, 340, 500, 700, 900, 1200, 1500, 1800, 2100, 2400, 3000, 4500, 0]
     nb_grimoire_manquant=0
     nb_menote_manquant=0
@@ -38,7 +38,7 @@ async def self(interaction: discord.Interaction, gemmes:int, hall:int, prison:in
     for i in range(26):
         if i == prison or i > prison:
             nb_menote_manquant+=lv[i]
-            nb_gemmes_menote_manquant_base=nb_menote_manquant-menote
+            nb_gemmes_menote_manquant_base=nb_menote_manquant-menotes
     for i in range(26):
         if i == autel or i > autel:
             nb_cristal_manquant+=lv[i]
@@ -90,7 +90,7 @@ async def self(interaction: discord.Interaction, gemmes:int, hall:int, prison:in
     BotEmbed.set_author(name=interaction.user.name, icon_url=interaction.user.avatar.url)
     BotEmbed.set_thumbnail(url="https://cdn.discordapp.com/attachments/1025391983503614073/1034598369491943595/unknown.png")
     BotEmbed.add_field(name="grimoire manquant", value=f"{nb_grimoire_manquant - grimoire} grimoire", inline=True)
-    BotEmbed.add_field(name="menote manquante", value=f"{nb_menote_manquant - menote} menote", inline=True)
+    BotEmbed.add_field(name="menote manquante", value=f"{nb_menote_manquant - menotes} menote", inline=True)
     BotEmbed.add_field(name="cristal manquant", value=f"{nb_cristal_manquant - cristal} cristal", inline=True)
     BotEmbed.add_field(name="gemmes des grimoires manquants", value=f"{nb_gemmes_grimoire_manquant} gemmes", inline=True)
     BotEmbed.add_field(name="gemmes des menotes manquantes", value=f"{nb_gemmes_menote_manquant} gemmes", inline=True)
@@ -180,10 +180,25 @@ async def self(interaction: discord.Interaction):
     await interaction.channel.purge(limit=1)
 
 
+@Bot.tree.command(name="shield_spam")
+async def self(interaction: discord.Interaction, membre:discord.Member):
+
+    for i in range(10):
+        if i == 0:
+            await interaction.response.send_message(f"<@{membre.id}>, put your shield")
+        else:
+            channel = Bot.get_channel(977911012739153990)
+            await channel.send(f"<@{membre.id}>, put your shield")
+        
+        await ay.sleep(2)
+
+
+
 # Admin
 
 
 @Bot.tree.command(name="guild_fest")
+@discord.app_commands.checks.has_role(976818687455674381)
 @discord.app_commands.choices(success=[
     Choice(name="yes", value=1), 
     Choice(name="no", value=0),
