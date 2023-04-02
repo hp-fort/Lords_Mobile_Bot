@@ -17,7 +17,7 @@ class MyBot(commands.Bot):
         Dis = Bot.get_guild(int(974566955132526673))
         activity = discord.Activity(type=discord.ActivityType.watching, name=f'👥 {(Dis.member_count)-9}')
         await Bot.change_presence(activity=activity)
-database_handler = DatabaseHandler("Lords_Mobile_bot.db")
+database_handler = DatabaseHandler("Lords_Mobile_Bot.db")
 
     
 Bot = MyBot()
@@ -182,15 +182,18 @@ async def self(interaction: discord.Interaction):
 
 @Bot.tree.command(name="shield_spam")
 async def self(interaction: discord.Interaction, membre:discord.Member):
-
-    for i in range(10):
-        if i == 0:
-            await interaction.response.send_message(f"<@{membre.id}>, put your shield")
-        else:
-            channel = Bot.get_channel(977911012739153990)
-            await channel.send(f"<@{membre.id}>, put your shield")
-        
-        await ay.sleep(2)
+    channel = Bot.get_channel(977911012739153990)
+    if interaction.channel != channel:
+        await interaction.response.send_message("you are in the bad channel")
+    else:
+        for i in range(10):
+            if i == 0:
+                await interaction.response.send_message(f"<@{membre.id}> put your shield")
+            else:
+                
+                await channel.send(f"<@{membre.id}> put your shield")
+            
+            await ay.sleep(2)
 
 
 
